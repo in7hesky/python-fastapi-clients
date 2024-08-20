@@ -25,7 +25,3 @@ class UpdateClientModel(BaseModel):
         arbitrary_types_allowed=True,
         json_encoders={ObjectId: str}
     )
-
-
-class StudentCollection(BaseModel):
-    students: List[ClientModel]
