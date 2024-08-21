@@ -24,8 +24,16 @@ services:
     depends_on:
       - mongo_db
     restart: always
-    ports:
-      - "8000:8000"
     environment:
       DB_NAME: clientsDB
       MONGODB_URL: mongodb://root:${MONGO_PASSWORD}@mongo_db:27017/
+
+  nginx:
+    image: nginx:1.27.1-alpine
+    depends_on:
+      - app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
